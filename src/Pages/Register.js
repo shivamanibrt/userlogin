@@ -4,7 +4,8 @@ import Form from 'react-bootstrap/Form';
 import { CustomInput } from '../Components/CustomInput';
 import { toast } from 'react-toastify';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../Components/Firebase/firebaseConfig';
+import { auth, db } from '../Components/Firebase/firebaseConfig';
+import { setDoc, doc } from 'firebase/firestore';
 
 
 export const Register = () => {
@@ -28,17 +29,37 @@ export const Register = () => {
     };
 
     const handleOnSubmit = async (e) => {
-        e.preventDefault();
-        const { confirmPassword, password, email } = formData;
-        if (confirmPassword !== password) {
-            toast.error('Password do not match');
-            return;
-        }
 
         try {
-            const pendingState = await createUserWithEmailAndPassword(auth, email, password);
+            e.preventDefault();
+            const { confirmPassword, password, email } = formData;
+            if (confirmPassword !== password) {
+                toast.error('Password do not match');
+                return;
+            }
 
-            console.log(pendingState);
+            const pendingState = createUserWithEmailAndPassword(auth, email, password);
+
+            toast.promise(pendingState,
+                {
+                    pending: 'Please wait'
+                }
+            )
+            const { user } = await pendingState;
+            if (user?.uid) {
+                toast.success('user has been registered');
+                //user is registered not lets add them to database for future post
+
+                const userObj = {
+                    fName: formData.fName,
+                    lName: formData.lName,
+                    email: formData.email
+                }
+                //send user to database 
+                await setDoc(doc(db, 'users', user.uid), userObj);
+                toast.success('User has been registered now you may login');
+
+            }
         } catch (error) {
             toast.error(error.message);
         }

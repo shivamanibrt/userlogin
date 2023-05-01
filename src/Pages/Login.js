@@ -20,14 +20,7 @@ export const Login = () => {
         type: 'password',
         required: true
     },
-    {
-        label: 'Confirm Password',
-        name: 'confirmpassword',
-        placeholder: '******',
-        type: 'password',
-        required: true
-
-    }]
+    ]
 
     return (
         <div className='form-holder'>
