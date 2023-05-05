@@ -16,9 +16,10 @@ import { useDispatch } from 'react-redux';
 
 function App() {
   const dispatch = useDispatch();
+
   onAuthStateChanged(auth, (user) => {
     user?.uid && dispatch(autoLogin(user.uid))
-  })
+  });
 
   return (
     <div>

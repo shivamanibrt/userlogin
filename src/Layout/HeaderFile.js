@@ -1,15 +1,25 @@
+import { signOut } from 'firebase/auth';
 import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { auth } from '../Components/Firebase/firebaseConfig';
+import { setUser } from '../Redux/userSlice';
 
 
 const HeaderFile = () => {
     const dispatch = useDispatch();
-    const { user } = useSelector((state) => state.user);
 
+    const { user } = useSelector((state) => state.user);
+    const handelOnLogout = () => {
+        signOut(auth).then(() => {
+            dispatch(setUser({}));
+            toast.success('user loged out');
+        });
+    }
 
     return (
         <div>
@@ -23,11 +33,7 @@ const HeaderFile = () => {
                         <Nav className="ms-auto fs-4">
                             {user?.uid ? (
                                 <>
-
-                                    <Nav.Link as={Link} to="dashboard">
-                                        <i className='fa-solid fa-user-pen fs-5' title='User'> Dashboard </i>
-                                    </Nav.Link>
-                                    <Nav.Link as={Link} to="logout">
+                                    <Nav.Link as={Link} to="logout" onClick={handelOnLogout}>
                                         <i className='fa-solid fa-user-pen fs-5' title='User'> Logout </i>
                                     </Nav.Link>
                                 </>) : (
@@ -37,7 +43,6 @@ const HeaderFile = () => {
                                     <Nav.Link as={Link} to="register">
                                         <i className='fa-solid fa-user-pen fs-5' title='User'> Register </i>
                                     </Nav.Link>
-
                                 </>
                             )}
 

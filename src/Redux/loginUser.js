@@ -9,8 +9,10 @@ export const autoLogin = uid => async dispatch => {
 
         //get user from firestore serve
         const userResp = await getDoc(doc(db, 'users', uid))
+        //adding data and uid to user info to send to redux 
+
         const userInfo = { ...userResp.data(), uid: uid };
-        console.log(userInfo);
+        // console.log(userInfo);
 
         //mount user to redux
         dispatch(setUser(userInfo));
@@ -22,20 +24,12 @@ export const autoLogin = uid => async dispatch => {
 
 export const loginUser = ({ email, password }) => async dispatch => {
     try {
+        //authentication from firebase 
         const { user } = await signInWithEmailAndPassword(
             auth,
             email,
             password
         );
-        // if (user?.uid) {
-        //     //get user from firestore serve
-        //     const userResp = await getDoc(doc(db, 'users', user?.uid))
-        //     const userInfo = { ...userResp.data(), uid: user?.uid };
-        //     console.log(userInfo);
-
-        //     //mount user to redux
-        //     dispatch(setUser(userInfo));
-        // }
         user?.uid && dispatch(autoLogin(user.uid))
 
     } catch (error) {
