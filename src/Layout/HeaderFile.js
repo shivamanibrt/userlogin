@@ -33,7 +33,7 @@ const HeaderFile = () => {
                         <Nav className="ms-auto fs-4">
                             {user?.uid ? (
                                 <>
-                                    <Nav.Link as={Link} to="logout" onClick={handelOnLogout}>
+                                    <Nav.Link as={Link} to="register" onClick={handelOnLogout}>
                                         <i className='fa-solid fa-user-pen fs-5' title='User'> Logout </i>
                                     </Nav.Link>
                                 </>) : (
