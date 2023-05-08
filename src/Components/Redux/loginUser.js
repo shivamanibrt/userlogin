@@ -6,7 +6,6 @@ import { setUser } from './userSlice'
 
 export const autoLogin = uid => async dispatch => {
     try {
-
         //get user from firestore serve
         const userResp = await getDoc(doc(db, 'users', uid))
         //adding data and uid to user info to send to redux 

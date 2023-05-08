@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { Button, Col, Form, Row } from 'react-bootstrap'
-import { CustomInput } from '../Components/CustomInput'
-import { postTransaction } from './transAction'
+import { CustomInput } from '../CustomInput'
 import { useDispatch, useSelector } from 'react-redux'
+import { addTransactionAction } from './transAction'
+// import { addTransactionAction } from './transAction'
 
 export const TransForm = () => {
     const dispatch = useDispatch();
@@ -21,8 +22,8 @@ export const TransForm = () => {
 
     const handleOnSubmit = e => {
         e.preventDefault();
-        console.log(dt)
-        dispatch(postTransaction({ ...dt, userId: user.uid }))
+        dispatch(addTransactionAction({ ...dt, userId: user.uid }));
+
     }
 
     return (
