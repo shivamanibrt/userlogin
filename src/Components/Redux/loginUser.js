@@ -1,6 +1,6 @@
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { toast } from "react-toastify";
-import { auth, db } from "../Components/Firebase/firebaseConfig";
+import { auth, db } from "../Firebase/firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 import { setUser } from './userSlice'
 
@@ -20,7 +20,6 @@ export const autoLogin = uid => async dispatch => {
         toast.error(error.message)
     }
 }
-
 export const loginUser = ({ email, password }) => async dispatch => {
     try {
         //authentication from firebase 

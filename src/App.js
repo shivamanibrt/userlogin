@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import Layout from './Layout/Layout';
+import Layout from './Pages/Layout/Layout';
 import { Login } from './Pages/Login'
 import { Register } from './Pages/Register'
 import Dashboard from './Pages/Dashboard'
@@ -10,7 +10,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './Components/Firebase/firebaseConfig';
-import { autoLogin } from './Redux/loginUser';
+import { autoLogin } from './Components/Redux/loginUser';
 import { useDispatch } from 'react-redux';
 
 

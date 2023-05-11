@@ -6,9 +6,11 @@ import { toast } from 'react-toastify';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from '../Components/Firebase/firebaseConfig';
 import { setDoc, doc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 
 
 export const Register = () => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({});
     const [error, setError] = useState('');
 
@@ -113,6 +115,7 @@ export const Register = () => {
                 <Button variant="primary" type="submit">
                     Submit
                 </Button>
+
             </Form>
         </div>
     );

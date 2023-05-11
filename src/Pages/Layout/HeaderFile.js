@@ -7,7 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { auth } from '../../Components/Firebase/firebaseConfig';
-import { setUser } from '../Redux/userSlice';
+import { setUser } from '../../Components/Redux/userSlice';
+// import { setUser } from './/Components/Redux/userSlice';
 
 
 const HeaderFile = () => {

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { CustomInput } from '../Components/CustomInput'
-import { loginUser } from '../Redux/loginUser';
+import { loginUser } from '../Components/Redux/loginUser';
+// import { loginUser } from '../Redux/loginUser';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 

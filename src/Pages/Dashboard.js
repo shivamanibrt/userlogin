@@ -1,6 +1,7 @@
 import React from 'react'
-import { TransForm } from '../Transation/TransForm';
-import { TransTable } from '../Transation/TransTable';
+import { TransForm } from '../Components/Transation/TransForm';
+import { TransTable } from '../Components/Transation/TransTable';
+
 
 const Dashboard = () => {
 
